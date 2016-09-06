@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="_9._4_FlipView.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_9._4_FlipView"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Click="Button_Click">Toggle Image's Visibile</Button>
+        <FlipView x:Name="ChapterFileView" Width="400" Height="300">
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+                    <FlipView x:Name="SlidesFileView" ItemsSource="{Binding Slidedatas}" Margin="0,0,0,0" SelectionChanged="SlidesFlip_SelectionChanged">
+                        <FlipView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </FlipView.ItemsPanel>
+
+                        <FlipView.ItemTemplate>
+                            <DataTemplate >
+                                <StackPanel>
+                                    <Image Source="{Binding Image}" Visibility="{Binding IsShowImage}" Width="400" Height="250"/>
+                                    <Border Background="#A5000000" Height="50" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" 
+                                                   FontFamily="Segoe UI" FontSize="26.667" 
+                                                   Foreground="#CCFFFFFF" Padding="15,20"
+                                                   TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                            </DataTemplate>
+                        </FlipView.ItemTemplate>
+                    </FlipView>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+    </StackPanel>
+</Page>
